@@ -1,29 +1,29 @@
-
+"""Snake game"""
 from turtle import Screen
+import time
 from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
-import time
 
-screen = Screen()
-screen.setup(width=600, height=600)
-screen.bgcolor("black")
-screen.title("Snake Game")
-screen.tracer(0)
+SCREEN = Screen()
+SCREEN.setup(width=600, height=600)
+SCREEN.bgcolor("black")
+SCREEN.title("Snake Game")
+SCREEN.tracer(0)
 
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
 
-screen.listen()
-screen.onkey(snake.up, "Up")
-screen.onkey(snake.down, "Down")
-screen.onkey(snake.left, "Left")
-screen.onkey(snake.right, "Right")
+SCREEN.listen()
+SCREEN.onkey(snake.up, "Up")
+SCREEN.onkey(snake.down, "Down")
+SCREEN.onkey(snake.left, "Left")
+SCREEN.onkey(snake.right, "Right")
 
 game_is_on = True
 while game_is_on:
-    screen.update()
+    SCREEN.update()
     time.sleep(0.1)
     snake.move()
 
@@ -34,7 +34,8 @@ while game_is_on:
         scoreboard.increase_score()
 
     # Detect collision with wall
-    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 \
+            or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         game_is_on = False
         scoreboard.game_over()
 
@@ -44,4 +45,4 @@ while game_is_on:
             game_is_on = False
             scoreboard.game_over()
 
-screen.exitonclick()
+SCREEN.exitonclick()
