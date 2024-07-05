@@ -34,6 +34,14 @@ class Snake:
         """Method to append a segment to the last segment of the snake"""
         self.add_segment(self.segments[-1].position())
 
+    def reset(self):
+        """Method to reset the snake"""
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+
     def move(self):
         """Method to move each segment of the snake"""
         for segment in range(len(self.segments) - 1, 0, -1):
